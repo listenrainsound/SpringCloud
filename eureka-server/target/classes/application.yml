@@ -1,0 +1,35 @@
+#启动端口
+server:
+  port: 8801
+
+#   指定eureka的客户端注册地址，也就是eureka服务的提供方，当前配置的服务的注册服务方
+eureka:
+  client:
+    registerWithEureka: false #自身不向eureka注册
+    fetchRegistry: false #启动时禁止client的注册
+      #服务注册中心的配置内容，指定服务注册中心的位置，eureka 服务器的地址（注意：地址最后面的 /eureka/ 这个是固定值）
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      #2、在原先的基础上添加security用户名和密码（例如：http://username:password@localhost:8000/eureka/）
+    serviceUrl:
+      #单机配置
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+      #集群配置
+      defaultZone: http://eureka2:8802/eureka/,http://eureka3:8803/eureka/
+
+  instance:
+    hostname: localhost
+
+#   指定应用名称
+spring:
+  application:
+    name: eureka-server1
+
+
+
+# 安全认证的配置
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin  # 用户名
+    password: admin   # 用户密码

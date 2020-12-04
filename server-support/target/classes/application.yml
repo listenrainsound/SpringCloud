@@ -1,0 +1,27 @@
+#启动端口
+server:
+  port: 8088
+
+#   指定eureka的客户端注册地址，也就是eureka服务的提供方，当前配置的服务的注册服务方
+eureka:
+  client:
+    serviceUrl:
+      #单机配置
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+      #集群配置
+      defaultZone: http://admin:admin@eureka1:8801/eureka/,http://admin:admin@eureka2:8802/eureka/,http://admin:admin@eureka3:8803/eureka/
+
+#   指定应用名称
+spring:
+  application:
+    name: server-support
+
+
+
+# 安全认证的配置
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin  # 用户名
+    password: admin   # 用户密码
